@@ -1,0 +1,7 @@
+Docker
+
+İlk görev, Redis'i çalıştırmak için yapılandırılmış Docker Image'ın adını belirlemektir. Docker ile tüm konteynırlar, Docker Image'ı temel alarak başlatılır. Bu image'ler süreci başlatmak için gereken her şeyi içerir; ana bilgisayar herhangi bir yapılandırma veya bağımlılık gerektirmez. Jane, mevcut görüntüleri registry.hub.docker.com/ adresinde veya <do> docker search komutunu kullanarak bulabilir. Örneğin, Redis’in bir image'ini bulmak için
+
+"docker search redis" komutu kullanılır.
+
+Jane, arama komutunu kullanarak Redis Docker image'inin redis olarak adlandırıldığını ve en son sürümü çalıştırmak istediğini belirledi. Redis bir veritabanı olduğundan, Jane çalışmaya devam ederken arka plan hizmeti olarak çalıştırmak istiyor. Bu adımı tamamlamak için, arka planda image resme dayalı bir Redis örneği çalıştıran bir konteyner başlatın. Docker CLI, Docker Image'ı temel alan bir konteyneri başlatacak olan run adlı bir komuta sahiptir. Yapı, dokcer <options> <image-name>. Varsayılan olarak, Docker ön planda bir komut çalıştırır. Arka planda çalışmak için, -d seçeneğinin belirtilmesi gerekir.

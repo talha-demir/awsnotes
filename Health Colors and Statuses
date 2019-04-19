@@ -1,0 +1,71 @@
+Health Colors and Statuses
+
+Gelişmis health raporlaması, temel health raporlamasına benzer şekilde dört renk kullanarak instance ve tüm ortam health'ini temsil eder. Gelişmis health raporları, ortamınızın durumunu daha iyi belirten tek kelimeli açıklayıcalar olan yedi healt status'ü sunar.
+
+Instance Status and Environment Status
+Elastic Beanstalk her zaman ortamınızda bir health check yaptığında, gelişmiş health raporlaması mevcut tüm verilerinizi analiz ederek ortamınızdaki her instance'ın health'ını kontrol eder. Herhangibir lower-level kontrolü başarısız olursa, Elastic Beanstalk instance'ın health'ını "downgrade" eder.
+Elastic Beanstalk, ortam yönetim konsolunda bütün ortamın(renk, status ve sorunlar), health bilgilerini görüntüler.Bu bilgi EB CLI'da da mevcuttur.Mevcut instance'lar için Health status ve sorun mesajları her 10 saniyede bir güncellenir ve health status eb health ile görüntülediğinizde EB CLI'dan erişilebilir.
+
+Elastic Beanstalk, ortam sağlığınızı değerlendirmek için instance health'lerdeki değişiklikler kullanılır, ancak hemen ortam sağlığı durumunu değiştirmez.Bir örnek herhangibir 1 dakikalık bir sürede health check te 3 kez başarısız olursa, elasticbeanstalk ortam health'inn downgrade edebilir. ortamdaki instance'ların sayısına ve tanımlanan sorunlara bağlı olarak,  unhealht olan bir instance elastic beanstalk'un bir bilgi mesajı göstermesine veya ortamın health status'ünü yeşilden(ok) sarı(warning) veya kırmızıya değiştirmesine neden olabilir.
+
+OK(Green)
+ bu status görüntülendiğinde:
+ 	-bir instance health checklerden geçiyor ve healt agent herhangibir sorun bildirmiyor
+ 	-Ortamın çoğu instance'ı health check'ten geçiyor ve health agent önemli sorunları bildirmiyor.
+ 	-bir instance sağlık kontrolünden geçiyor ve request'leri normal şekilde karşılıyor.
+
+Örnek: Ortamınız kısa süre önce deploy edildi ve normal şekilde request'ler alıyor. request'lerin yüzde beşi 400 seri hata döndürüyor. Deployment her durumda normal şekilde tamamlanıyor.
+
+Mesaj: (instance): Uygulama deployment'ı 23 saniye önce tamamlandı ve 26 saniye sürdü.
+
+Warning(Yellow)
+bu status görüntülendiğinde:
+	-healt agent bir instance veya ortam için makul sayıda isteklerin başarısız olduğunu veya diğer sorunları raporluyor.
+	-bir instance operasyonu çalışıyor ve uzun süre alıyor.
+
+Örnek: ortamdaki bir instance durumu kötü.
+mesaj:5 instance'dan biri bozulmuş.
+
+Degraded (Red)
+bu status görüntülendiğinde health agent bir ortam veya instance için yüksek sayıda request'in başarısız olduğunu veya diğer sorunların olduğunu raporluyor.
+
+örnek: ortam 5 instance'a kadar ölçeklendirme işleminde.
+mesaj:4 aktif instance Auto scaling group size 5'den aşağıda.
+
+Severe(red)
+bu status görüntülendiğinde health agent bir ortam veya instance için yüksek sayıda request'in başarısız olduğunu veya diğer sorunların olduğunu raporluyor.
+
+örnek: Elastic Beanstalk, instance healt elde etmek için load balancer'lar ile haberleşemiyor.
+
+mesaj(ortam): ELB healt başarısız veya mevcut bütün instance'lar için değil. Instance'ların hiçbiri data göndermiyor.
+
+"Arn: aws: iam :: 123456789012: role / aws -lasticbeanstalk-service-role" role üstlenemiyor. Rolün var olduğunu ve doğru yapılandırıldığını doğrulayın.
+Mesaj (instances): İnstance ELB sağlığı 37 dakikadan beri kullanılamıyor. Veri yok. Son görülme 37 dakika önce.
+
+Info(Green)
+Bu status görüntülendiğinde
+bir operasyon bir instance'da çalışıyor.
+bir operasyon bir otamdaki bir kaç instance'da çalışıyor.
+
+Örnek: yeni bir uygulama versiyonu instance'a deploy'da çalışıyor.
+
+Mesaj(Ortam): komut 5 instance'ın 3 ünde çalışıyor.
+Mesaj(instance):uygulama deployment'ı çalışıyor(3 saniyedir çalışıyor).
+
+Pending(Grey)
+Bu status görüntülendiğinde bir operasyon bir instance, komut zaman aşımındadır. 
+
+Örnek: Yakın zamanda oluşturulan ortam ve instancelar önyükleniyor.
+Mesaj: initialization işlemi gerçekleştiriliyor.(12 saniyedir çalışıyor).
+
+Unknown (Grey)
+Bu status görüntülendiğinde ElasticBeanstalk ve health agent'ına yetersiz miktarda veri bildirildiğinde görüntülenir.
+
+Örnek: veri alınmıyor.
+Bu durum elastic beanstalk ortam sağlığını durduğunda görüntülenir. Ortam doğru bir şekilde çalışmıyor olabilir.Bazı kötü health durumları, uzun süre devam ederse ortamı suspended duruma geçirmesine neden olur.
+
+örnek: Elastic beanstalk, ortamın service role'une erişemiyor
+
+örnek:Elastic beanstalk'un yarattığı Auto Scaling group silindi.
+
+Mesaj: ortam healh'ı OK'den severe'ye geçti. İnstance yok Auto scaling group desired capacity'yi 1 olarak ayarladı.

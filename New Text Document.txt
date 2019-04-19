@@ -1,0 +1,5 @@
+AWS CloudFront (CDN Service)
+
+CDN (Content Delivery Network) statik dosyalarinizi (html, css, pdf, image, video, sound) internetten erisime açtiginizda
+ her defasinda bu dosyalarin tekrar tekrar çekilmesi yerine size daha yakin bölgelerdeki cache’lenerek
+ istemcilere kendilerine daha yakin bölgelerden ulastirmayi saglayan servistir.

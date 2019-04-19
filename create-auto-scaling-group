@@ -1,0 +1,24 @@
+create-auto-scaling-group
+
+Description
+Belirlenen isim ve attribute ile bir auto scale group oluşturun.
+
+Options
+--auto-scaling-group-name(string)
+	Otomatik Ölçeklendirme grubunun adı. Bu adın, AWS hesabınızın kapsamında uniq olması gerekir.
+--launch-configuration-name(string)
+	Başlatma yapılandırmasının adı. Bu parametre, bir launch template, karma instance policy veya EC2 instance'ı belirtilmelidir.
+--launch-template
+	instance'ları başlatmak için kullanılacak başlatma şablonu. Bu parametre, başlatma yapılandırması, karma instance policy(--mixed-instances-policy) veya EC2 instance'ı belirtilmelidir.
+Shorthand Syntax:
+	LaunchTemplateID=string,LaunchTemplateName=string,Version=String
+JSON Syntax:
+{
+	"LaunchTemplateId":"String",
+	"LaunchTemplateName":"string",
+	"Version":string
+}
+--mixed-instances-policy(structure)
+	mixed instances policy instance'ları başlatmak için kullanılır.Bu parametre, launch configuration, launch template veya bir EC2 instance'ı belirtmelidir.
+JSON Syntax:
+	

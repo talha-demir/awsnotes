@@ -1,0 +1,31 @@
+İzleme Aralığı Varsayılan olarak, ortamınızdaki örnekler temel sağlık ölçümlerini ek bir ücret ödemeden beş dakikalık aralıklarla CloudWatch'a yayınlar. Daha ayrıntılı raporlama için, ortamınızdaki kaynakların temel sağlık ölçümlerini CloudWatch'a yayınlama sıklığını artırmak için İzleme aralığını 1 dakika olarak ayarlayabilirsiniz. Amazon CloudWatch servis ücretleri bir dakikalık aralıklı metrikler için uygulanır. Daha fazla bilgi için Amazon CloudWatch'a bakınız.
+
+instance seçenekleri
+-instance type
+-AMI ID
+-Monitoring Interval
+-Root Volume(boot device)
+-Security Groups
+
+instance type
+instance type, uygulamanızı çalıştırmak için başlatılan EC2 instance'ının türünü belirler. Uygulamanızı yük altında çalıştırmak için yeterince güçlü olan ancak çoğu zaman boşta kalacak kadar güçlü olmayan bir örnek seçin.Development amacıyla, t2 instance ailesi kısa süre boyunca patlama kabiliyetine sahip ılımlı bir güç sağlar. Büyük ölçekli, yüksek kullanılabilirlikli uygulamalar için, herhangi bir tek instance down olursa, kapasitenin büyük ölçüde etkilenmemesini sağlamak için bir instance pool kullanın. Normal saatler boyunca orta derece yük altında beş instance çalıştırmanıza izin veren bir instance tipi ile başlayın. herhangibir instance fail olursa geri kalan instance'lar trafiğin kalanı ile başa çıkar. Kapasite buffer ayrıca yoğun saatlerde trafik artmaya başladığında ortamın genişlemesine de(scale up) izin verir.
+
+
+AMI ID
+ Amazon Machine Image (AMI) ortamınızdaki EC2 instance'larını başlatmak için AWS Elastic Beanstalk'in kullandığı Amazon Linux veya Windows Server makine image'dır.
+ Elastic Beanstalk, uygulamanızı çalıştırmak için gereken araçları ve kaynakları içeren makine image'leri sağlar.Elastic Beanstalk, seçtiğiniz bölge, platform ve instance türüne göre ortamınız için varsayılan bir AMI seçer. Özel bir AMI oluşturduysanız, varsayılan AMI ID'yi kendinizinkiyle değiştirin
+
+Monitoring interval
+
+Varsayılan olarak, ortamınızdaki örnekler temel sağlık ölçümlerini(health metrics) ek bir ücret ödemeden beş dakikalık aralıklarla CloudWatch'a yayınlar.Daha ayrıntılı raporlama için, ortamınızdaki kaynakların temel sağlık ölçümlerini CloudWatch'a yayınlama sıklığını artırmak için İzleme aralığını 1 dakika olarak ayarlayabilirsiniz. Amazon CloudWatch servis ücretleri bir dakikalık aralıklı metrikler için uygulanır.
+
+Root Volume (Boot Device)
+ Ortamınızdaki her instance bir root volume ile yapılandırılmıştır. Root volume, işletim sistemini, librar'leri, scriptleri ve uygulama kaynak kodunuzu depolamak için instance'a bağlı Amazon EBS blok cihazıdır. Varsayılan olarak, bütün platformlarda depolamak için genel amaçlı SSD block cihazları kullanılır.
+ Manyetik depolamayı kullanmak veya sağlanan IOPS SSD volume türlerini kullanmak için Root volume type değiştirebilir ve gerekirse volume size'ı artırabilirsiniz. Hazırlanan IOPS volume'leri için, sağlanacak IOPS sayısını da seçmelisiniz. Performans ve fiyat gereksinimlerinizi karşılayan volume türünü seçin.
+
+ Security Groups
+ instance'larınıza ekli olan security grupları, hangi trafiğin instance'lara ulaşmasına (giriş) ve hangi trafiğin instance'ları terk etmesine izin verildiğini (çıkış) belirler. Elastic Beanstalk, HTTP (80) ve HTTPS (443) için standart portlardaki load balancer'lardan gelen trafiğe izin veren bir güvenlik grubu oluşturur.
+
+ Diğer portlarda veya diğer kaynaklardan gelen trafiğe izin vermek için oluşturduğunuz ek güvenlik gruplarını belirleyebilirsiniz. Örneğin SSH erişimi için sınırlandırılmış bir IP adres aralığından 22 numaralı port noktasında veya ek güvenlik için yalnızca erişiminizin olduğu bir ana bilgisayar sunucusundan giriş yapılmasını sağlayan bir güvenlik grubu oluşturabilirsiniz.
+ Note
+ 	Ortam A'nın instance'ları ile Ortam B'nin instanceları arasındaki trafiğe izin vermek için, Elastic Beanstalk'un Ortam B'ye bağlı olduğu güvenlik grubuna bir kural ekleyebilir ve Elastic Beanstalk'un ortama A'ya bağlı security grubu belirleyebilirsiniz.Ancak, bunu yapmak iki güvenlik grubu arasında bir bağımlılık yaratır. Eğer ortam A yı yok etmeyi denerseniz, Elastic Beanstalk ortamın security group'unu silmenize izin vermeyecektir çünkü ortam B'nin security group'u ona bağlıdır. Daha güvenli bir yaklaşım, ayrı bir güvenlik grubu oluşturmak, onu A ortamına iliştirmek ve onu B ortamının güvenlik grubu kuralında belirtmektir.  

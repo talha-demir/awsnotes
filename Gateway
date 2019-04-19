@@ -1,0 +1,12 @@
+Gateway
+Basitçe iç servislerimizi dışarı açan proxy katmanı olarak tanımlanabilir.
+
+Bir müşteri bir sipariş hakkında bilgi istediğinde, başka bir ek talepte bulunmaya zorlamak yerine müşteri bilgilerini de içine gömmek istiyoruz. Bu durumda dataları servislerden alma, aggregate etme ve müşteriye yukarıdaki şekilde sunma mantığını api-gateway katmanında yapmalıyız.
+
+Api-Gateway temel davranışları;
+
+Router: Mikroservisler arasında haberleşmeyi sağlar. Bir servisten diğerine gelen istekleri iletir(Service Discovery).
+Data aggregator: Mikroservisler arasında bilgi toplayarak ve bunları zengin bir response halinde bağlı olduğu Api Consumer’a iletir. Bu durumda Backend For Frontend (BFF) gibi davranmış olur.
+Protocol abstraction layer: Api-gateway’e Rest Api veya GraphQL üzerinden gelen isteklerle yani protocol ve teknoloji farketmeksizin içerdeki mikroservislerin iletişimini sağlar.
+Centralized error management: Bir servise ulaşılamadığı zaman veya servis aşırı yavaş cevap vermeye başladığı zaman api-gateway ölümcül hataların yayılmaması için cache den default response’lar sağlamaya başlar. Sistemi daha güvenilir ve esnek hale getirmek için erişelemeyen servis yeniden ayağa kalkana kadar kapatılır(Circuit Breaker).
+

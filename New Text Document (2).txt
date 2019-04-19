@@ -1,0 +1,84 @@
+Docker Compose
+
+Compose multi-container yapilarini çalistirmak ve tanimlamak için bir araçtir. Compose ile Uygulama servislerini 
+yapilandirmak için yaml dosyasini kullanirsiniz. tek bir komutla tüm servis yapilandirmalarini olusturum baslatirsiniz.
+Compose uygulamanizin tüm yasam döngüsünü yönetmek için komutlara sahiptir
+
+- servisleri start stop ve rebuild yapabilirsiniz
+- çalisan servislerin durumunu görüntüleyebilirsiniz
+- çalisan servislerin log çiktilarini alabilirsiniz
+
+Kubernetes
+
+Kubernetes bir docker swarm gibi container orchestrator'dir. container orchestrator'lari bir cluster olusturmak için
+bir araya gelerek grup olisturur.
+- hataya dayanikli
+- istege bagli ölçeklendirilebilir
+- kaynaklari uygun sekilde kullanan
+- uygulamalari birbiriyle haberlestirir
+- dis dünyadan erisilebilir
+- herhangibir kesinti olmadan güncelleme ve geri olma yapabilir
+
+
+Jenkins?
+
+- git deposunda degisiklik olup olmadigini bulmak için sürekli kontrol eder
+- degisiklikleri çeker ve build eder basarisiz olmasi durumunda gelistiriciyi 
+- bilgilendirir bir sorun olmazsa test islemlerini baslatir ve istenilen sunuculara deploy eder
+- jenkins build, test, deploy asamalarini pipeline olarak tanimlayabiliriz.
+- projeleri istenilen docker image'lari içerisinde build edilebilir
+- aws servislerini kullanabilir
+
+VPC?
+- Amazon bulut ortaminda kisiye özel sanal veri merkezi
+- olusturmanizi saglayacak network ayarlarinizi yapabiceginiz servis hizmetidir.
+- Mantiksal olarak yalitilmis içinde tanimlamis oldugumuz sanal bir agda aws kaynaklarini 
+- kullanabilecegimiz bir bölümü tedarik eder. 
+
+Solr vs elasticsearch
+- solr community'si daha büyük ve daha eski
+- Solr için ana mantiksal veri yapisi, Shards (Lucene endeksleri) 'den çagrilan Koleksiyon olarak adlandirilmaktadir.
+- Tek bir collection'da birden fazla shard bulunabilir, ve shard'lar farkli node larda yasayabilir.
+- Böylece tek bir collection distrubuted ortam saglayarak birden fazla node'a yayilabilir.
+
+- solr'da belge yapisi düz olmali iç içe geçmis türleri desteklemiyor
+- ElasticSearch karmasik iç içe geçmis türleri destekler.
+- Elastic search indexlenen dökümanlarda bir sorgu ile eslestiginde
+- bildirim olusturabilecek sorgulari kaydetmemize olanak saglar
+- Elasticsearch, Solr’un aksine EC2 dostu olmak üzere dagitim göz önünde bulundurularak olusturuldu;
+- bu, Elasticsearch’ün birden çok sunucuda, güvenli ve verimli bir sekilde bir arama dizini
+- olusturmasi anlamina geliyor.
+- Elasticsearch dagitik ortamlar ve cloud için daha iyi bir seçenek
+
+Docker ?
+
+vcl 
+network.com.tr
+ip restriction
+
+
+Select the default environment.
+You can change this later by typing "eb use [environment_name]".
+1) boyner-newmobileapi-test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

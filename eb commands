@@ -1,0 +1,27 @@
+eb status: ortamınızın mevcut durumunu gösterir. Status ready olduğunda, örnek uygulama elastikbeanstalk.com adresinde mevcuttur ve ortam güncellenmeye hazırdır.
+
+eb health: ortamdaki instance'lar hakkında health bilgilerini görüntülemek için kullanılır. --refresh seçeneği her 10 saniyede healt değerlerini interaktif bir şekilde görüntülemenizi sağlar.
+
+eb events: elastic beanstalk tarafından event çıktılarının bir listesini görüntülemek için kullanılır.
+
+"eb use [environment_name] yazarak ortamı değiştirebilirsiniz.
+
+eb log: ortamınızdaki bir instance'dan logları çeker. Varsayılan olarak eb logs başlatılan ilk instance'dan logları çeker. Belirli bir instance'dan logları almak için almak --instance opsiyonu ile bir instance ID belirleyebilirsiniz.
+	--all seçeneği bütün instance'ların logunu çeker ve .elasticbeanstalk/logs. altındaki subdirectory'lere kaydeder.
+eb open: browser'da ortamın website'ını açar 
+
+
+eb deploy: ortam up ve ready olduğunda eb deploy kullanarak güncelleyebilirsiniz.Bu komut paketleme ve deploy için bazı kaynak kodlarla daha iyi çalışır. bu nedenle, bu örnek için proje dizininde aşağıdaki içeriğe sahip bir Docker dosyası oluşturduk:
+
+bu Dockerfile bir ubuntu 12.04 image'ini ve 2048 oyununu yükler. Ortamınızdaki uygulamayı upload etmek için eb deploy'unu çalıştırın. eb deployu çalıştırdığınızda EB CLI dizininizdeki içeriği paketler ve ortamınıza deploy eder.
+
+Note:
+	proje dosyanızdaki git reponuzu initialize ettiyseniz EB CLI değişiklikleriniz olsa bile her zaman son commit'inizi deploy eder. Değişikliklerinizi ortamınıza deploy için eb deploy'u çalıştırmadan önce değişikliklerinizi commit edin.
+
+eb config: eb config komutu ile çalışan ortamlarınızın var olan yapılandırma ayarlarına bakar. bu komut bir text editöründeki mevcut yapılandırma ayarlarını listeler.bir çok seçenek null değere sahiptir, bunlar default olarak ayarlanmamıştır. ortamınızdaki kaynakları güncellemek için değiştirebilirsiniz.
+
+eb terminate: Şimdilik ortamı kullanarak işiniz bittiğinde, sonlandırmak için eb terminate kullanın.
+
+
+
+
